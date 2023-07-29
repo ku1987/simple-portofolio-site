@@ -34,7 +34,7 @@ a {
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
+  color: #e1e1e1;
   background: rgb(30 41 59);
 }
 
