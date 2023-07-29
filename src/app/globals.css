@@ -38,6 +38,11 @@ body {
   background: rgb(30 41 59);
 }
 
+main {
+  max-width: 768px;
+  min-width: 600px;
+}
+
 h1 {
   font-size: 1.5rem;
   margin: 1rem 0;
@@ -54,5 +59,9 @@ ul {
 }
 
 ul li {
+  padding: 2px 0;
+}
+
+ol li {
   padding: 2px 0;
 }
