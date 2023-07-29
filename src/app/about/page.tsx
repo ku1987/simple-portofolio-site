@@ -18,6 +18,7 @@ export default function About() {
       <ul>
         <li>Ocean 🌊</li>
         <li>Travel ✈️</li>
+        <li>Reading 📚</li>
         <li>Guitar 🎸</li>
         <li>Music 🎧</li>
         <li>Cooking 🍳</li>

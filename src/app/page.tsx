@@ -5,8 +5,8 @@ export default function Home() {
   return (
     <main className="p-12">
       <div className="flex flex-col items-center justify-between">
-        <h1>Kei Usami</h1>
-      <ul className="grid grid-cols-3 list-none w-72 justify-items-center p-0">
+        <h1 className="mb-8">Kei Usami</h1>
+      <ul className="grid grid-cols-3 list-none w-60 justify-items-center p-0">
         <li>
           <Link target="_blank" className="cursor-pointer hover:opacity-80" href={"https://github.com/ku1987"}>
             <Image src="/icons/github-mark-white.svg" alt="GitHub" width="30" height="30"/>
