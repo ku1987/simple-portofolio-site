@@ -3,7 +3,7 @@ import ArticleLink from "../components/article-link";
 export default function Blog() {
   // TODO: Fetch blog posts from API
   return (
-    <main className="p-12">
+    <main>
       <div className="flex flex-col items-center justify-between">
         <h1>Blog</h1>
       </div>

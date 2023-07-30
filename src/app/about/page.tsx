@@ -1,6 +1,6 @@
 export default function About() {
   return (
-    <main className="p-12">
+    <main>
       <div className="flex flex-col items-center justify-between">
         <h1>About</h1>
       </div>

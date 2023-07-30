@@ -13,7 +13,7 @@ export default function Article({ params }: { params: any }) {
   }, [params]);
 
   return (
-    <main className="p-12">
+    <main>
       <div className="flex flex-col items-center justify-between"></div>
       <ReactMarkdown>{content}</ReactMarkdown>
     </main>
