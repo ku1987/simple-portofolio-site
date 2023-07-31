@@ -19,6 +19,7 @@
 @media (min-width: 768px) {
   main {
     max-width: 768px;
+    min-width: 512px;
     padding: 12px;
   }
 

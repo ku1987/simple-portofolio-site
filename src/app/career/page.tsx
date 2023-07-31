@@ -6,13 +6,11 @@ export default function Career() {
       </div>
       <h2>Work history</h2>
       <ul>
-        <li>Sample</li>
-        <li>Sample</li>
+        <li>WIP</li>
       </ul>
       <h2>Past projects</h2>
       <ul>
-        <li>Sample</li>
-        <li>Sample</li>
+        <li>WIP</li>
       </ul>
     </main>
   );
