@@ -1,5 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
+import Script from "next/script";
+
 import { Inter } from "next/font/google";
 import Header from "./components/header";
 import Footer from "./components/footer";
@@ -17,8 +19,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" className="overflow-x-hidden">
+      <Script src="https://www.googletagmanager.com/gtag/js?id=G-J9RX3JR6WE" />
+      <Script id="google-analytics">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+ 
+          gtag('config', 'G-J9RX3JR6WE');
+        `}
+      </Script>
+
+      <body className={`${inter.className} pb-16`}>
         <Header />
         <div
           id="container"
