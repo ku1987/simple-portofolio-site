@@ -31,11 +31,11 @@ export default function RootLayout({
         `}
       </Script>
 
-      <body className={`${inter.className} pb-16`}>
+      <body className={`${inter.className}`}>
         <Header />
         <div
           id="container"
-          className="flex flex-col items-center justify-between"
+          className="flex flex-col items-center justify-between mb-8 min-h-70"
         >
           {children}
         </div>

@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="absolute flex space-x-4 h-8 bottom-4 right-2/4 translate-x-1/2 text-xs">
+    <footer className="relative md:absolute md:bottom-12 flex flex-col items-center w-auto h-4 right-2/4 translate-x-1/2 text-xs leading-6">
       <div>
         <p>Copyright © 2023 Kei Usami</p>
       </div>
