@@ -1,3 +1,7 @@
+export const metadata = {
+  title: "About | Kei Usami",
+};
+
 export default function About() {
   return (
     <main>

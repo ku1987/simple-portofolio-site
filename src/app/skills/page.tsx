@@ -1,4 +1,8 @@
-export default function Career() {
+export const metadata = {
+  title: "Skills | Kei Usami",
+};
+
+export default function Skills() {
   return (
     <main>
       <div className="flex flex-col items-center justify-between">

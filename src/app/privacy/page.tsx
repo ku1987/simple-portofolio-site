@@ -1,4 +1,6 @@
-import ReactMarkdown from "react-markdown";
+export const metadata = {
+  title: "Privacy policy | Kei Usami",
+};
 
 export default function Privacy() {
   return (

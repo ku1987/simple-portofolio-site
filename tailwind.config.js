@@ -13,7 +13,7 @@ module.exports = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       minHeight: {
-        70: "70vh",
+        65: "65vh",
       },
     },
   },

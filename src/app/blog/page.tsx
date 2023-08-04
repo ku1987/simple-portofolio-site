@@ -1,5 +1,9 @@
 import ArticleLink from "../components/article-link";
 
+export const metadata = {
+  title: "Blog | Kei Usami",
+};
+
 export default function Blog() {
   // TODO: Fetch blog posts from API
   return (
