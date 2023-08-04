@@ -35,7 +35,7 @@ export default function RootLayout({
         <Header />
         <div
           id="container"
-          className="flex flex-col items-center justify-between mb-8 min-h-65"
+          className="flex flex-col items-center justify-between mb-8 min-h-60"
         >
           {children}
         </div>
