@@ -39,7 +39,7 @@ export default function Home() {
             <Link
               target="_blank"
               className="cursor-pointer hover:opacity-80"
-              href={"https://example.com"}
+              href={"https://twitter.com/k_usmi"}
             >
               <Image
                 src="/icons/twitter-svgrepo-com.svg"
