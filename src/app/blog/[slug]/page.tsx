@@ -7,6 +7,13 @@ export default function Article({ params }: { params: any }) {
   const [content, setContent] = useState("");
 
   useEffect(() => {
+    // const { Client } = require("@notionhq/client")
+
+    // // Initializing a client
+    // const notion = new Client({
+    //   auth: process.env.NOTION_TOKEN,
+    // })
+
     document.title = "Article | Kei Usami";
     fetch(`/articles/${params.slug}.md`)
       .then((res) => res.text())

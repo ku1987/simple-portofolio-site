@@ -7,7 +7,7 @@ export default function LinkButton({
 }: {
   url: string;
   name: string;
-  target: boolean;
+  target?: boolean;
 }) {
   if (target) {
     return (
