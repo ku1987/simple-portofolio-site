@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="overflow-x-hidden">
+    <html lang="en" className="overflow-x-hidden md:relative min-h-97">
       <Script src="https://www.googletagmanager.com/gtag/js?id=G-J9RX3JR6WE" />
       <Script id="google-analytics">
         {`
@@ -35,7 +35,7 @@ export default function RootLayout({
         <Header />
         <div
           id="container"
-          className="flex flex-col items-center justify-between mb-8 min-h-60"
+          className="flex flex-col items-center justify-between mb-8 min-h-55"
         >
           {children}
         </div>

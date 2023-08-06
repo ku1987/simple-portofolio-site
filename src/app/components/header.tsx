@@ -18,7 +18,7 @@ export default function Header() {
             <LinkButton url="/skills" name="Skills" />
           </li>
           <li>
-            <LinkButton url="/career" name="Career" />
+            <LinkButton url="/works" name="Works" />
           </li>
         </ul>
       </nav>
