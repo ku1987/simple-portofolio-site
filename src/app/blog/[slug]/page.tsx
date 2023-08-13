@@ -1,29 +1,40 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import ReactMarkdown from "react-markdown";
+import { Block, RenderBlock } from "./text";
 
-export default function Article({ params }: { params: any }) {
-  const [content, setContent] = useState("");
+type NotionResponse = {
+  res: {
+    block: {};
+    has_more: boolean;
+    next_cursor: {};
+    object: string;
+    results: Block[];
+    type: string;
+  };
+};
+
+export default function Article({ params }: { params: { slug: string } }) {
+  const [content, setContent] = useState<React.JSX.Element[]>([]);
+  const { slug } = params;
 
   useEffect(() => {
-    // const { Client } = require("@notionhq/client")
-
-    // // Initializing a client
-    // const notion = new Client({
-    //   auth: process.env.NOTION_TOKEN,
-    // })
+    fetch(`/api/blog/${slug}`)
+      .then((res) => res.json())
+      .then((json: NotionResponse) => {
+        const items = json.res.results.map((item) => (
+          <RenderBlock key={item.id} block={item} />
+        ));
+        setContent(items);
+      });
 
     document.title = "Article | Kei Usami";
-    fetch(`/articles/${params.slug}.md`)
-      .then((res) => res.text())
-      .then((text) => setContent(text));
-  }, [params]);
+  }, [slug]);
 
   return (
     <main>
       <div className="flex flex-col items-center justify-between"></div>
-      <ReactMarkdown>{content}</ReactMarkdown>
+      {content}
     </main>
   );
 }
