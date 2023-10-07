@@ -37,6 +37,8 @@ resource "aws_amplify_app" "this" {
   }
 
   environment_variables = {
+    NOTION_DATABASE_ID = "value"
+    NOTION_TOKEN       = "value"
   }
 }
 
