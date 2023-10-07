@@ -21,8 +21,6 @@ resource "aws_amplify_app" "this" {
             - npm ci
         build:
           commands:
-            - env | grep -e NOTION_TOKEN -e NOTION_DATABASE_ID >> .env.production
-            - env | grep -e NEXT_PUBLIC_ >> .env.production
             - npm run build
       artifacts:
         baseDirectory: .next
