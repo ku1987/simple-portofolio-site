@@ -9,14 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@notionhq/client": "^2.2.10",
+    "@notionhq/client": "^2.2.13",
     "@types/node": "20.4.5",
     "@types/react": "18.2.17",
-    "@types/react-dom": "18.2.7",
-    "autoprefixer": "10.4.14",
+    "@types/react-dom": "18.2.11",
+    "autoprefixer": "10.4.16",
     "dotenv": "^16.3.1",
     "eslint": "8.46.0",
-    "eslint-config-next": "13.4.12",
+    "eslint-config-next": "13.5.4",
     "next": "13.5.4",
     "postcss": "8.4.31",
     "react": "18.2.0",
