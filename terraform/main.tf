@@ -7,9 +7,11 @@ resource "aws_amplify_app" "this" {
   enable_basic_auth             = false
   enable_branch_auto_build      = false
   enable_branch_auto_deletion   = false
-  iam_service_role_arn          = "arn:aws:iam::404903421151:role/service-role/AmplifySSRLoggingRole-dsdurzmxxnl64"
+  iam_service_role_arn          = aws_iam_role.amplify_role.arn
   platform                      = "WEB_COMPUTE"
-
+  lifecycle {
+    ignore_changes = [access_token]
+  }
   build_spec = <<-EOT
     version: 1
     frontend:
