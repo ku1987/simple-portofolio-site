@@ -21,7 +21,10 @@ resource "aws_amplify_app" "this" {
             - npm ci
         build:
           commands:
-            - npm run build
+            - echo process.env.secrets
+            - secrets
+            - $NOTION_DATABASE_ID
+            # - npm run build
       artifacts:
         baseDirectory: .next
         files:
@@ -31,11 +34,10 @@ resource "aws_amplify_app" "this" {
           - node_modules/**/*
   EOT
 
-  # The default rewrites and redirects added by the Amplify Console.
   custom_rule {
-    source = "/<*>"
-    status = "404-200"
-    target = "/index.html"
+    source = "https://keiusami.com"
+    status = "302"
+    target = "https://www.keiusami.com"
   }
 }
 
@@ -53,13 +55,13 @@ resource "aws_sns_topic_subscription" "email_subscription" {
 }
 
 resource "aws_ssm_parameter" "notion_database_id" {
-  name  = "/amplify/dsdurzmxxnl64/main/NOTION_DATABASE_ID"
+  name  = "/amplify/${aws_amplify_app.this.id}}/main/NOTION_DATABASE_ID"
   type  = "SecureString"
   value = "value"
 }
 
 resource "aws_ssm_parameter" "notion_token" {
-  name  = "/amplify/dsdurzmxxnl64/main/NOTION_TOKEN"
+  name  = "/amplify/${aws_amplify_app.this.id}/main/NOTION_TOKEN"
   type  = "SecureString"
   value = "value"
 }
