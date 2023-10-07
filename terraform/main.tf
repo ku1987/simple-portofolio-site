@@ -23,7 +23,6 @@ resource "aws_amplify_app" "this" {
           commands:
             - export NOTION_DATABASE_ID=$(aws ssm get-parameter --name /amplify/d3fuiyibncwrym/main/NOTION_DATABASE_ID --query Parameter.Value --output text --with-decryption)
             - export NOTION_TOKEN=$(aws ssm get-parameter --name /amplify/d3fuiyibncwrym/main/NOTION_TOKEN --query Parameter.Value --output text --with-decryption)
-            - echo $NOTION_DATABASE_ID
             - echo $NOTION_DATABASE_ID >> .env.production
             - echo NOTION_TOKEN >> .env.production
             - npm run build
