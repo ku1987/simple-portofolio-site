@@ -19,6 +19,8 @@ resource "aws_amplify_app" "this" {
             - npm ci
         build:
           commands:
+            - env | grep -e NOTION_TOKEN -e NOTION_DATABASE_ID >> .env.production
+            - env | grep -e NEXT_PUBLIC_ >> .env.production
             - npm run build
       artifacts:
         baseDirectory: .next
@@ -35,11 +37,6 @@ resource "aws_amplify_app" "this" {
     status = "404-200"
     target = "/index.html"
   }
-
-  environment_variables = {
-    NOTION_DATABASE_ID = "value"
-    NOTION_TOKEN       = "value"
-  }
 }
 
 resource "aws_sns_topic" "too_many_requests" {
@@ -53,4 +50,16 @@ resource "aws_sns_topic_subscription" "email_subscription" {
     ignore_changes = [endpoint]
   }
   endpoint = ""
+}
+
+resource "aws_ssm_parameter" "notion_database_id" {
+  name  = "/amplify/dsdurzmxxnl64/main/NOTION_DATABASE_ID"
+  type  = "SecureString"
+  value = "value"
+}
+
+resource "aws_ssm_parameter" "notion_token" {
+  name  = "/amplify/dsdurzmxxnl64/main/NOTION_TOKEN"
+  type  = "SecureString"
+  value = "value"
 }
