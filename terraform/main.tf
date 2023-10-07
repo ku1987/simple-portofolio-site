@@ -21,10 +21,12 @@ resource "aws_amplify_app" "this" {
             - npm ci
         build:
           commands:
-            - echo process.env.secrets
-            - secrets
-            - $NOTION_DATABASE_ID
-            # - npm run build
+            - export NOTION_DATABASE_ID=$(aws ssm get-parameter --name /amplify/d3fuiyibncwrym/main/NOTION_DATABASE_ID --query Parameter.Value --output text --with-decryption)
+            - export NOTION_TOKEN=$(aws ssm get-parameter --name /amplify/d3fuiyibncwrym/main/NOTION_TOKEN --query Parameter.Value --output text --with-decryption)
+            - echo $NOTION_DATABASE_ID
+            - echo $NOTION_DATABASE_ID >> .env.production
+            - echo NOTION_TOKEN >> .env.production
+            - npm run build
       artifacts:
         baseDirectory: .next
         files:
@@ -32,6 +34,7 @@ resource "aws_amplify_app" "this" {
       cache:
         paths:
           - node_modules/**/*
+          - .next/cache/**/*
   EOT
 
   custom_rule {
@@ -55,13 +58,19 @@ resource "aws_sns_topic_subscription" "email_subscription" {
 }
 
 resource "aws_ssm_parameter" "notion_database_id" {
-  name  = "/amplify/${aws_amplify_app.this.id}}/main/NOTION_DATABASE_ID"
+  name  = "/amplify/${aws_amplify_app.this.id}/main/NOTION_DATABASE_ID"
   type  = "SecureString"
   value = "value"
+  lifecycle {
+    ignore_changes = [value]
+  }
 }
 
 resource "aws_ssm_parameter" "notion_token" {
   name  = "/amplify/${aws_amplify_app.this.id}/main/NOTION_TOKEN"
   type  = "SecureString"
   value = "value"
+  lifecycle {
+    ignore_changes = [value]
+  }
 }

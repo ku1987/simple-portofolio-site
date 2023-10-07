@@ -7,7 +7,7 @@ resource "aws_iam_policy" "amplify_ssm_policy" {
     Statement = [
       {
         Action = [
-          "ssm:GetParameters",
+          "ssm:GetParameter",
           "kms:Decrypt",
         ],
         Effect   = "Allow",
