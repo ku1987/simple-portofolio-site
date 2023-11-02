@@ -32,6 +32,22 @@ export default function Blog() {
         <h1>Blog</h1>
       </div>
       <ol>
+        <li>
+          <ArticleLink
+            url="https://tech.revcomm.co.jp/miitel-account-slo-en"
+            title="(External) Methods for Measuring and Continuously Optimizing MiiTel Account's SLO"
+            date="2023-10-31"
+            openInNewTab={true}
+          />
+        </li>
+        <li>
+          <ArticleLink
+            url="https://tech.revcomm.co.jp/miitel-account-slo-ja"
+            title="(External) MiiTel AccountのSLO: 測定と継続的な最適化の方法"
+            date="2023-10-31"
+            openInNewTab={true}
+          />
+        </li>
         {pages.map((page) => {
           return (
             <li key={page.id}>
