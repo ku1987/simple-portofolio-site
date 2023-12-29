@@ -34,6 +34,14 @@ export default function Blog() {
       <ol>
         <li>
           <ArticleLink
+            url="https://tech.revcomm.co.jp/release-on-demand"
+            title="(External) 本番リリースを週一から随時に変えるためにやったこと"
+            date="2023-12-21"
+            openInNewTab={true}
+          />
+        </li>
+        <li>
+          <ArticleLink
             url="https://tech.revcomm.co.jp/miitel-account-slo-en"
             title="(External) Methods for Measuring and Continuously Optimizing MiiTel Account's SLO"
             date="2023-10-31"
