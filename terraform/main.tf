@@ -41,6 +41,10 @@ resource "aws_amplify_app" "this" {
     status = "302"
     target = "https://www.keiusami.com"
   }
+
+  environment_variables = {
+    _LIVE_UPDATES = "[{\"name\":\"Node.js version\",\"pkg\":\"node\",\"type\":\"nvm\",\"version\":\"18\"}]"
+  }
 }
 
 resource "aws_sns_topic" "too_many_requests" {

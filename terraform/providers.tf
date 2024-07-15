@@ -3,12 +3,12 @@ terraform {
     bucket  = "default-tfstate"
     key     = "main/terraform.tfstate"
     region  = "ap-northeast-1"
-    profile = "main"
+    profile = "default"
   }
-  required_version = "1.5.4"
+  required_version = "1.8.3"
 }
 
 provider "aws" {
-  profile = "main"
+  profile = "default"
   region  = "ap-northeast-1"
 }
