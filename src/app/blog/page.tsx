@@ -1,32 +1,11 @@
-"use client";
+import { Client } from "@notionhq/client";
 
-import { useEffect, useState } from "react";
 import ArticleLink from "../components/article-link";
 
-type Page = {
-  id: string;
-  title: string;
-  date: string;
-};
-export default function Blog() {
-  const [pages, setPages] = useState<Page[]>([]);
-  useEffect(() => {
-    fetch(`/api/blog`)
-      .then((res) => res.json())
-      .then((json) => {
-        const pageRes = json.res.results.map((page: any) => {
-          return {
-            id: page.id,
-            title: page.properties.Name.title[0].text.content,
-            date: page.properties.CreatedAt.date.start,
-          };
-        });
-        setPages(pageRes);
-      });
-    document.title = "Blog | Kei Usami";
-  }, []);
+export default async function Blog() {
+  const posts = await getPosts();
 
-  return pages.length === 0 ? null : (
+  return (
     <main>
       <div className="flex flex-col items-center justify-between">
         <h1>Blog</h1>
@@ -56,13 +35,13 @@ export default function Blog() {
             openInNewTab={true}
           />
         </li>
-        {pages.map((page) => {
+        {posts.map((post: any) => {
           return (
-            <li key={page.id}>
+            <li key={post.id}>
               <ArticleLink
-                url={`/blog/${page.id}`}
-                title={page.title}
-                date={page.date}
+                url={`/blog/${post.properties.Slug.rich_text[0].plain_text}--${post.id}`}
+                title={post.properties.Name.title[0].text.content}
+                date={post.properties.PublishedAt.date.start}
               />
             </li>
           );
@@ -86,4 +65,14 @@ export default function Blog() {
       </ol>
     </main>
   );
+}
+
+async function getPosts(): Promise<any[]> {
+  const notion = new Client({
+    auth: process.env.NOTION_TOKEN,
+  });
+  const res = await notion.databases.query({
+    database_id: process.env.NOTION_DATABASE_ID as string,
+  });
+  return res.results;
 }

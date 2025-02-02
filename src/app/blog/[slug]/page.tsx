@@ -1,40 +1,43 @@
-"use client";
+import { Client } from "@notionhq/client";
 
-import { useEffect, useState } from "react";
-import { Block, RenderBlock } from "./text";
+import { RenderBlock } from "./text";
 
-type NotionResponse = {
-  res: {
-    block: {};
-    has_more: boolean;
-    next_cursor: {};
-    object: string;
-    results: Block[];
-    type: string;
-  };
-};
+export async function generateStaticParams(): Promise<{ slug: string }[]> {
+  const notion = new Client({
+    auth: process.env.NOTION_TOKEN,
+  });
+  const res = await notion.databases.query({
+    database_id: process.env.NOTION_DATABASE_ID as string,
+  });
+  return res.results.map((post: any) => {
+    return { slug: `${post.properties.Slug.rich_text[0].plain_text}--${post.id}` }
+  });
+}
 
-export default function Article({ params }: { params: { slug: string } }) {
-  const [content, setContent] = useState<React.JSX.Element[]>([]);
-  const { slug } = params;
-
-  useEffect(() => {
-    fetch(`/api/blog/${slug}`)
-      .then((res) => res.json())
-      .then((json: NotionResponse) => {
-        const items = json.res.results.map((item) => (
-          <RenderBlock key={item.id} block={item} />
-        ));
-        setContent(items);
-      });
-
-    document.title = "Article | Kei Usami";
-  }, [slug]);
+export default async function Article({ params }: { params: { slug: string } }) {
+  const slugParts = params.slug.split("--");
+  const lastItem = slugParts[slugParts.length - 1];
+  const post = await getPost(lastItem);
 
   return (
     <main>
       <div className="flex flex-col items-center justify-between"></div>
-      {content}
+      {post.map((item) => (
+        <RenderBlock key={item.id} block={item} />
+      ))
+      }
     </main>
   );
 }
+
+
+async function getPost(id: string): Promise<any[]> {
+  const notion = new Client({
+    auth: process.env.NOTION_TOKEN,
+  });
+  const res = await notion.blocks.children.list({
+    block_id: id,
+  });
+  return res.results;
+}
+
