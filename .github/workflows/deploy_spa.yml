@@ -45,4 +45,4 @@ jobs:
         run: npm run build
 
       - name: Sync /out directory to S3
-        run: aws s3 sync ./out s3://portfolio-spa-static --delete
+        run: aws s3 sync ./out s3://portfolio-spa-static --exact-timestamps
