@@ -40,7 +40,7 @@ resource "aws_iam_role" "github_actions_role" {
 
 resource "aws_iam_policy" "github_actions_policy" {
   name        = "github-actions-policy"
-  description = "Policy for GitHub Actions to access S3 bucket"
+  description = "Policy for GitHub Actions to access S3 bucket and CloudFront distribution"
   policy = jsonencode({
     Version = "2012-10-17",
     Statement = [
@@ -54,6 +54,15 @@ resource "aws_iam_policy" "github_actions_policy" {
         Resource = [
           "arn:aws:s3:::portfolio-spa-static",
           "arn:aws:s3:::portfolio-spa-static/*"
+        ]
+      },
+      {
+        Effect = "Allow",
+        Action = [
+          "cloudfront:CreateInvalidation"
+        ],
+        Resource = [
+          "${aws_cloudfront_distribution.spa_distribution.arn}"
         ]
       }
     ]
