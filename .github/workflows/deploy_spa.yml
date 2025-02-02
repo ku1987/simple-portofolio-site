@@ -46,3 +46,6 @@ jobs:
 
       - name: Sync /out directory to S3
         run: aws s3 sync ./out s3://portfolio-spa-static --exact-timestamps
+
+      - name: Invalidate CloudFront cache
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
