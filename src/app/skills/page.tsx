@@ -1,3 +1,5 @@
+import LinkText from "@/app/components/link-text";
+
 export const metadata = {
   title: "Skills | Kei Usami",
 };
@@ -20,9 +22,9 @@ export default function Skills() {
         <li>Node.js</li>
         <li>Express</li>
       </ul>
-      <h2>Infrastructure, Cloud architecture</h2>
+      <h2>Infrastructure, Cloud Architecture</h2>
       <ul>
-        <li>AWS</li>
+        <li>AWS (<LinkText target url="https://www.credly.com/badges/8c3a6d3c-91c6-4f31-8c6f-e1004f8462ce" name="Certified Solutions Architect - Associate"></LinkText>) </li>
         <li>Terraform</li>
         <li>Docker</li>
       </ul>
