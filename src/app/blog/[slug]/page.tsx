@@ -2,6 +2,8 @@ import { Client } from "@notionhq/client";
 
 import { RenderBlock } from "./text";
 
+type Params = Promise<{ slug: string }>
+
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
   const notion = new Client({
     auth: process.env.NOTION_TOKEN,
@@ -14,8 +16,9 @@ export async function generateStaticParams(): Promise<{ slug: string }[]> {
   });
 }
 
-export default async function Article({ params }: { params: { slug: string } }) {
-  const slugParts = params.slug.split("--");
+export default async function Article({ params }: { params: Params }) {
+  const { slug } = await params;
+  const slugParts = slug.split("--");
   const lastItem = slugParts[slugParts.length - 1];
   const post = await getPost(lastItem);
 
