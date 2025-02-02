@@ -9,7 +9,7 @@ on:
         - 'public/**'
         - 'package.json'
         - 'package-lock.json'
-        - '/.github/workflows/**'
+        - '.github/workflows/**'
 
 permissions:
   id-token: write
