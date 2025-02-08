@@ -79,6 +79,7 @@ resource "aws_cloudfront_distribution" "spa_distribution" {
     error_caching_min_ttl = 300
   }
 
+  web_acl_id = aws_wafv2_web_acl.cloudfront_webacl.arn
 }
 
 data "aws_acm_certificate" "cert" {
@@ -99,4 +100,43 @@ resource "aws_cloudfront_function" "rewrite_to_index" {
   runtime = "cloudfront-js-2.0"
   publish = true
   code    = file("${path.module}/source/rewrite-function.js")
+}
+
+resource "aws_wafv2_web_acl" "cloudfront_webacl" {
+  provider = aws.us
+  name     = "cloudfront-webacl-portfolio"
+  scope    = "CLOUDFRONT"
+
+  default_action {
+    allow {}
+  }
+
+  rule {
+    name     = "AWSManagedRulesCommonRuleSet"
+    priority = 0
+
+    override_action {
+      count {}
+    }
+
+    statement {
+      managed_rule_group_statement {
+        name        = "AWSManagedRulesCommonRuleSet"
+        vendor_name = "AWS"
+      }
+    }
+
+    visibility_config {
+      cloudwatch_metrics_enabled = true
+      metric_name                = "AWSManagedRulesCommonRuleSet"
+      sampled_requests_enabled   = true
+    }
+  }
+
+  visibility_config {
+    cloudwatch_metrics_enabled = true
+    metric_name                = "cloudfrontVisibilityConfig"
+    sampled_requests_enabled   = true
+  }
+
 }
