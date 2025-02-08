@@ -7,7 +7,6 @@ const nextConfig = {
   },
   reactStrictMode: true,
   output: 'export',
-  swcMinify: true,
   trailingSlash: true,
   env: {
     NOTION_TOKEN: process.env.NOTION_TOKEN,
