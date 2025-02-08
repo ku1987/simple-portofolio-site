@@ -13,7 +13,7 @@ export default function ArticleLink({
 }) {
   return (
     <Link
-      className="md:p-8 md:pr-28 py-6 relative block cursor-pointer hover:text-slate-400 underline"
+      className="md:p-8 md:pr-28 py-6 relative block cursor-pointer hover:text-slate-400 underline underline-offset-4"
       target={openInNewTab ? "_blank" : ""}
       href={url}
     >

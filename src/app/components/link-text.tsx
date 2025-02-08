@@ -13,7 +13,7 @@ export default function LinkText({
     return (
       <Link
         target="_blank"
-        className="cursor-pointer hover:text-slate-400 underline"
+        className="cursor-pointer hover:text-slate-400 underline underline-offset-4"
         href={url}
       >
         {name}
