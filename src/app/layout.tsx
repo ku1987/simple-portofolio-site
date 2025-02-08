@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="overflow-x-hidden md:relative min-h-97">
+    <html lang="en" className="overflow-x-hidden md:relative min-h-160">
       <Script src="https://www.googletagmanager.com/gtag/js?id=G-J9RX3JR6WE" />
       <Script id="google-analytics">
         {`
