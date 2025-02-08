@@ -133,6 +133,29 @@ resource "aws_wafv2_web_acl" "cloudfront_webacl" {
     }
   }
 
+  rule {
+    name     = "rule-rate-based"
+    priority = 1
+
+    action {
+      block {}
+    }
+
+    statement {
+      rate_based_statement {
+        limit              = 10000
+        aggregate_key_type = "IP"
+      }
+    }
+
+    visibility_config {
+      cloudwatch_metrics_enabled = false
+      metric_name                = "rate-based-rule"
+      sampled_requests_enabled   = false
+    }
+  }
+
+
   visibility_config {
     cloudwatch_metrics_enabled = true
     metric_name                = "cloudfrontVisibilityConfig"
