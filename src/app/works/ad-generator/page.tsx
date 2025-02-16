@@ -1,4 +1,4 @@
-import LinkButton from "@/app/components/link-button";
+import LinkText from "@/app/components/link-text";
 import Image from "next/image";
 
 export const metadata = {
@@ -45,7 +45,7 @@ export default function WorkTitle() {
         <li>StableDiffusion API</li>
       </ul>
       <h3>GitHub</h3>
-      <LinkButton
+      <LinkText
         target={true}
         name="https://github.com/ku1987/auto-ad-generator"
         url="https://github.com/ku1987/auto-ad-generator"
