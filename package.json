@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@notionhq/client": "^2.3.0",
+    "@notionhq/client": "^4.0.1",
     "@tailwindcss/postcss": "^4.1.11",
     "@types/node": "22.15.30",
     "@types/react": "19.1.9",
